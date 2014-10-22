@@ -11,14 +11,19 @@ public class Stativ
 
    public Stativ( int antallSykler)
    {
-
+     stativ = new Sykkel[antallSykler];
+     fyllStativet();
    }
 
 //Her skal du opprette konkrete Sykkel-objekter og sette dem inn
   //     i arrayen. Et passende antall vil være halvparten av hva det er plass til. >
    public void fyllStativet()
    {
-
+     for( int i = 0; i < stativ.length/2; i++)
+     {
+		 Sykkel s = new Sykkel();
+		 stativ[nesteStativID++] = s;
+	 }
    }
 		/* Metoden skal registrere at personen representert ved parameteren s
        leier en sykkel under følgende tre forutsetninger:
