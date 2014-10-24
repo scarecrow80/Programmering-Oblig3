@@ -1,3 +1,6 @@
+//Gruppemedlemmer: Stian Hvidsten (236619), Aleksander Foss Vold (236608) og Thomas Löfstedt (236612).
+// Informasjonsteknolgi (Kullklassekode: INFORMATIK14HA).
+
 /*Når syklene ikke er utleid er de plassert i stativer på forskjellige steder i byen.
 Hvert stativ er representert ved et objekt av klassen Stativ som du ser en skisse av under.
 Din oppgave er å erstatte all pseudokode med java-instruksjoner.*/
@@ -5,8 +8,7 @@ Din oppgave er å erstatte all pseudokode med java-instruksjoner.*/
 public class Stativ
 {
    private Sykkel[] stativ;
-   private int nesteStativID = 0;
-   private int maksSykler = 0;
+
 
 
    public Stativ( int antallSykler)
@@ -19,10 +21,10 @@ public class Stativ
   //     i arrayen. Et passende antall vil være halvparten av hva det er plass til. >
    public void fyllStativet()
    {
-     for( int i = 0; i < stativ.length/2; i++)
+     for( int i = 0; i < stativ.length / 2; i++)
      {
 		 Sykkel s = new Sykkel();
-		 stativ[nesteStativID++] = s;
+		 stativ[i] = s;
 	 }
    }
 		/* Metoden skal registrere at personen representert ved parameteren s
@@ -36,10 +38,24 @@ public class Stativ
        "Ta sykkel på plass 1". Husk at plassene går fra 1 og oppover. Hvis leie
        av sykkel ikke lar seg gjøre skal metoden returnere en tekst med
        informasjon om hva det skyldes. */
-       // public String leiUt(Person s)
-       // {
+        public String leiUt(Person s)
+        {
+			for(int i = 0; i < stativ.length; i++)
+			{
+				if(stativ[i] != null)
+				{
+					if( s.leiSykkel(stativ[i]))
+					{
+						Sykkel temp = stativ[i];
+						stativ[i] = null;
+						return "Ta sykkel nr " + temp.getSykkelId() + " på plass"+ ( i + 1);
+					}
+					return "Du får ikke leie sykkel, siden du kanskje har en merknad.";
 
-  	   //}
+				}
+			}
+			return " Ingen ledige sykler i stativet, eller stativet er tomt.";
+		}
  	/* Metoden skal sørge for at sykkelen som personen, representert ved
        parameteren s,leier blir "satt tilbake i stativet", under forutsetning
        av at det er plass i stativet. Videre må det registreres at personen nå
@@ -47,9 +63,19 @@ public class Stativ
        tekst som angir hvor sykkelen skal plasseres, for eksempel:
        "Sett sykkelen på plass 12".I motsatt fall skal det returneres en tekst
        som ber syklisten levere sykkelen et annet sted. */
-   		// public String leverInn(Person s)
-   		// {
+ 		public String leverInn(Person s)
+		{
+			for( int i = 0; i < stativ.length; i++)
+			{
+				if( stativ[i] == null)
+				{
 
-  		//}
+					stativ[i] = s.getSykkel();
+					s.leverInn();
+					return "Sett sykkel på plass nr " + (i + 1);
+				}
+			}
+			return "Det er ingen plasser igjen, prøv et nytt utleiested" ;
+		}
 }
 // end of class Sykkel
