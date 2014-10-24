@@ -1,4 +1,5 @@
-
+//Gruppemedlemmer: Stian Hvidsten (236619), Aleksander Foss Vold (236608) og Thomas Löfstedt (236612).
+// Informasjonsteknolgi (Kullklassekode: INFORMATIK14HA).
 // Klasse som håndterer Utleiestedene, Vindusklassen og events.
 import java.awt.*;
 import java.awt.event.*;
@@ -61,19 +62,19 @@ public class Utleiested extends JFrame implements ActionListener {
          sykkelen. */
 
     public void leiUt()
-    {
-		int  idnr = Integer.parseInt(personIDFelt.getText());
-		Person p = personer.finnPerson(idnr);
+       {
+   		int  idnr = Integer.parseInt(personIDFelt.getText());
+   		Person p = personer.finnPerson(idnr);
 
-		if(p != null)
-		{
-			display.setText(stativet.leiUt(p));
-		}
-		else
-		
+   		if(p != null)
+   		{
+   			display.setText(stativet.leiUt(p));
+   		}
+   		else
+   		display.setText("Personen finnes ikke i registeret");
+
 
     }
-
        /*Metoden skal registrere at en sykkel leveres inn. Hvis sykkelen er
        registrert utleid skal innleveringen registreres på personen som har
        leid sykkelen og det må registreres at sykkelen settes tilbake i stativet.
@@ -81,10 +82,23 @@ public class Utleiested extends JFrame implements ActionListener {
        sykkelens id-nummer er ukjent, skal det gis beskjed om det.*/
   public void leverInn()
   {
+	  String message;
+	  int idnr= Integer.parseInt(sykkelIDFelt.getText());
+	  Person p = personer.finnSykkelBruker(idnr);
 
+	  if( p == null)
+	  {
+		  message=("Sykkelen er ikke utleid");
 
-
+	  }
+      else
+      {
+		message = stativet.leverInn(p);
+	  }
+	  display.setText(message);
   }
+
+
    //Metoden skal sørge for at leiUt() kalles når det klikkes på knappen
    //  "Leie", og at leverInn() kalles når det klikkes på  knappen "Levere"
   public void actionPerformed(ActionEvent e) {
