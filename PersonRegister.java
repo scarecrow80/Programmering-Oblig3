@@ -1,3 +1,5 @@
+//Gruppemedlemmer: Stian Hvidsten (236619), Aleksander Foss Vold (236608) og Thomas Löfstedt (236612).
+// Informasjonsteknolgi (Kullklassekode: INFORMATIK14HA).
 /*Alle personene (syklistene) er lagret i et personregister.
 Nedenfor ser du klassen som representerer dette registeret i programmet.
 Din oppgave er å erstatte all pseudokode med java-instruksjoner.*/
@@ -17,7 +19,7 @@ public class PersonRegister
        i arrayen, f.eks 10 stykker. Du vil trenge dem for å kunne teste
        ut programmet. */
 
-   public void opprettPersonregister()
+   public final void opprettPersonregister()
    {
      personer[0] = new Person("Bill Gates");
      personer[1] = new Person("Steve Jobs");
@@ -59,7 +61,8 @@ public class PersonRegister
    {
      for(int i = 0; i < personer.length; i++)
      {
-		 if( personer[i] != null && personer[i].getSykkel() != null && personer[i].getSykkel().getSykkelId() == sykkelId)
+		  Sykkel p = personer[i].getSykkel();
+		 if( personer[i] != null && personer[i].getSykkel() != null && p.getSykkelId() == sykkelId)
 		 {
 		 return personer[i];
 	    }
