@@ -1,3 +1,5 @@
+//Gruppemedlemmer: Stian Hvidsten (236619), Aleksander Foss Vold (236608) og Thomas Löfstedt (236612).
+// Informasjonsteknolgi (Kullklassekode: INFORMATIK14HA).
 public class SykkelByen
 {
    private Utleiested[] steder;
