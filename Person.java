@@ -1,3 +1,6 @@
+//Gruppemedlemmer: Stian Hvidsten (236619), Aleksander Foss Vold (236608) og Thomas Löfstedt (236612).
+// Informasjonsteknolgi (Kullklassekode: INFORMATIK14HA).
+
 /*For å kunne leie en bysykkel må syklisten være registrert i Bysykkel-systemet. Objekter av klassen Person skal representere syklistene i programmet. Klassen Person skal ha følgende datafelt:
 
 navn
@@ -118,22 +121,19 @@ public class Person
 	 at personen ikke lenger leier sykkelen. */
 
     public void leverInn()
-	   {
-	    Date innTid = new Date();
+	{
+	    Date leveringstid = new Date();
 
-	    if(leietid(innTid) > Sykkel.MAXTID)
+	    if( leveringstid.getTime() - startTid.getTime() >= Sykkel.MAXTID)
 	    {
-			if(leietid(innTid) - sykkel.MAXTID == 1)
-			{
-				setMerknad(innTid, "Sykkel ble levert" + (leietid(innTid) - sykkel.MAXTID) + " time for seint");
-			}
-			else
-			{
-				setMerknad(innTid, "Sykkel ble levert " + (leietid(innTid) - sykkel.MAXTID) + "timer for seint");
-		    }
-	     }
-	     sykkel = null;
-	   }
+			setMerknad(leveringstid, "Du leverte for seint" + leietid(leveringstid) + " timer");
+		}
+		sykkel = null;
+
+
+
+	}
+
 
 
    public String toString()
@@ -142,7 +142,7 @@ public class Person
 
      if ( sykkel != null)
      {
-		 utskrift += "Sykkel id: " + /*sykkel.getMedlemsnummer() + */"\n"; //added later
+		 utskrift += "Sykkel id: " + sykkel + "\n";
 	 }
 
 	 if (!merknad.equals(""))
